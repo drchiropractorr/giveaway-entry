@@ -309,17 +309,12 @@
         <p><strong>Winner Selection:</strong> One winner will be chosen at random from all eligible entries after the entry period closes. Odds of winning depend on the number of eligible entries received. Winner will be notified by email within 5 business days of the drawing.</p>
         <p><strong>Prize:</strong> <span id="rulesPrize">Hyperice Hypersphere Go vibrating massage ball (approx. retail value $119)</span>. Prize is non-transferable and no cash substitution, except at Sponsor's discretion.</p>
         <p>This promotion is in no way sponsored, endorsed, administered by, or associated with Instagram. Information you provide is submitted to The ChiropractOrr, not to Instagram. Void where prohibited by law.</p>
-        <p>By entering, you confirm you meet the eligibility requirements above and agree to these official rules.</p>
+        <p>By entering, you confirm you meet the eligibility requirements above, agree to these official rules, and consent to being added to The ChiropractOrr's biweekly wellness email list (tips, offers, event invites) — you can unsubscribe anytime.</p>
       </div>
 
       <label class="check-row" id="row_agree">
         <input type="checkbox" id="g_agree">
-        <div class="txt">I confirm I'm 18+ and I agree to the official rules above.</div>
-      </label>
-
-      <label class="check-row" id="row_optin">
-        <input type="checkbox" id="g_optin">
-        <div class="txt">Also add me to The ChiropractOrr's biweekly wellness email list (tips, offers, event invites). You can unsubscribe anytime.</div>
+        <div class="txt">I confirm I'm 18+, agree to the official rules above, and consent to receiving The ChiropractOrr's biweekly wellness emails (unsubscribe anytime).</div>
       </label>
 
       <div class="err-msg" id="errMsg">Please fill in your name, a valid email, and agree to the official rules.</div>
@@ -372,16 +367,6 @@
     agreeRow.classList.toggle('checked', agreeInput.checked);
   });
 
-  var optinRow = document.getElementById('row_optin');
-  var optinInput = document.getElementById('g_optin');
-  optinRow.addEventListener('click', function(e){
-    if (e.target !== optinInput) optinInput.checked = !optinInput.checked;
-    optinRow.classList.toggle('checked', optinInput.checked);
-  });
-  optinInput.addEventListener('change', function(){
-    optinRow.classList.toggle('checked', optinInput.checked);
-  });
-
   var submitBtn = document.getElementById('submitBtn');
   var errMsg = document.getElementById('errMsg');
   var sendStatus = document.getElementById('sendStatus');
@@ -408,7 +393,7 @@
       name: name,
       email: email,
       instagram: instagram,
-      mailchimpOptin: optinInput.checked,
+      mailchimpOptin: true,
       timestamp: new Date().toLocaleString()
     };
 
