@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Win with The ChiropractOrr — Instagram Giveaway</title>
+<style>
+  :root{
+    --teal:#0d5c63;
+    --teal-dark:#093d42;
+    --teal-light:#e7f3f2;
+    --accent:#c98a3a;
+    --ink:#1f2a2b;
+    --muted:#5a6b6c;
+    --line:#d8e3e2;
+    --bg:#f4f7f6;
+    --ok:#2f7a4d;
+    --danger:#b3423f;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+  }
+  .wrap{
+    max-width:520px;
+    margin:0 auto;
+    min-height:100vh;
+    background:#fff;
+    box-shadow:0 0 40px rgba(0,0,0,.06);
+  }
+  header{
+    background:var(--teal);
+    color:#fff;
+    padding:28px 24px 24px;
+    text-align:center;
+  }
+  header .badge{
+    display:inline-block;
+    background:rgba(255,255,255,.15);
+    padding:5px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.4px;
+    margin-bottom:10px;
+  }
+  header h1{
+    margin:0 0 6px;
+    font-size:24px;
+    line-height:1.25;
+  }
+  header p{
+    margin:0;
+    font-size:14px;
+    opacity:.9;
+  }
+  main{padding:22px 24px 40px;}
+
+  .prize-card{
+    background:var(--teal-light);
+    border-radius:14px;
+    padding:18px;
+    text-align:center;
+    margin-bottom:22px;
+  }
+  .prize-card .prize-name{
+    font-size:19px;
+    font-weight:800;
+    color:var(--teal-dark);
+    margin-bottom:4px;
+  }
+  .prize-card .prize-sub{
+    font-size:13px;
+    color:var(--muted);
+  }
+
+  h2.section-title{
+    font-size:16px;
+    color:var(--teal-dark);
+    margin:0 0 12px;
+  }
+
+  .step-list{
+    list-style:none;
+    margin:0 0 26px;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .step-list li{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    font-size:14.5px;
+    line-height:1.5;
+  }
+  .step-num{
+    flex-shrink:0;
+    width:26px; height:26px;
+    border-radius:50%;
+    background:var(--teal);
+    color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:700;
+  }
+  .ig-handle{
+    color:var(--teal);
+    font-weight:700;
+  }
+  .amoe-note{
+    font-size:12.5px;
+    color:var(--muted);
+    background:#fbf7f0;
+    border-left:3px solid var(--accent);
+    padding:10px 12px;
+    border-radius:6px;
+    margin-bottom:26px;
+  }
+
+  label.field-label{
+    display:block;
+    font-size:14px;
+    font-weight:600;
+    margin:14px 0 6px;
+  }
+  input[type=text],input[type=email]{
+    width:100%;
+    padding:14px;
+    font-size:16px;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    background:#fafcfc;
+    outline:none;
+  }
+  input:focus{border-color:var(--teal);}
+  .hint{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:4px;
+  }
+
+  .rules-toggle{
+    margin:22px 0 10px;
+    font-size:13.5px;
+    color:var(--teal);
+    font-weight:600;
+    text-decoration:underline;
+    cursor:pointer;
+    background:none;
+    border:none;
+    padding:0;
+  }
+  .rules-box{
+    display:none;
+    font-size:12.5px;
+    line-height:1.6;
+    color:var(--muted);
+    background:#fafcfc;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:14px 16px;
+    margin-bottom:16px;
+    max-height:260px;
+    overflow-y:auto;
+  }
+  .rules-box.open{display:block;}
+  .rules-box p{margin:0 0 10px;}
+  .rules-box p:last-child{margin-bottom:0;}
+
+  .check-row{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:14px;
+    border:2px solid var(--line);
+    border-radius:12px;
+    cursor:pointer;
+    margin:6px 0 18px;
+  }
+  .check-row.checked{
+    border-color:var(--teal);
+    background:var(--teal-light);
+  }
+  .check-row input{
+    width:22px; height:22px;
+    flex-shrink:0;
+    accent-color:var(--teal);
+    margin-top:1px;
+  }
+  .check-row .txt{font-size:13.5px; line-height:1.45;}
+
+  button.submit-btn{
+    width:100%;
+    padding:17px;
+    font-size:16px;
+    font-weight:700;
+    border:none;
+    border-radius:12px;
+    background:var(--teal);
+    color:#fff;
+    cursor:pointer;
+  }
+  button.submit-btn:disabled{
+    background:#a9c3c1;
+    cursor:not-allowed;
+  }
+  button.submit-btn:active{transform:scale(.99);}
+
+  .err-msg{
+    color:var(--danger);
+    font-size:13px;
+    font-weight:600;
+    margin-top:10px;
+    display:none;
+  }
+  .err-msg.show{display:block;}
+  #sendStatus{
+    font-size:12.5px;
+    color:var(--muted);
+    margin-top:10px;
+    text-align:center;
+  }
+
+  #screenSuccess{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:60px 30px;
+    min-height:70vh;
+  }
+  #screenSuccess.visible{display:flex;}
+  .check-circle{
+    width:72px; height:72px;
+    border-radius:50%;
+    background:var(--ok);
+    color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:34px;
+    margin-bottom:18px;
+  }
+  #screenSuccess h1{
+    font-size:21px;
+    margin:0 0 10px;
+    color:var(--teal-dark);
+  }
+  #screenSuccess p{
+    font-size:14px;
+    color:var(--muted);
+    max-width:340px;
+    line-height:1.55;
+  }
+  #screenForm.hidden{display:none;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="badge">GIVEAWAY</div>
+    <h1 id="headerTitle">Tag Us &amp; Win!</h1>
+    <p id="headerSub">The ChiropractOrr — Campbell, CA</p>
+  </header>
+
+  <main>
+
+    <div id="screenForm">
+      <div class="prize-card">
+        <div class="prize-name" id="prizeName">Hypersphere Go</div>
+        <div class="prize-sub" id="prizeSub">One winner drawn July 11, 2026</div>
+      </div>
+
+      <h2 class="section-title">How to Enter</h2>
+      <ul class="step-list">
+        <li><div class="step-num">1</div><div>Take a photo at our booth/event today.</div></li>
+        <li><div class="step-num">2</div><div>Post it to your Instagram feed or Story and tag <span class="ig-handle">@thechiropractorr</span>.</div></li>
+        <li><div class="step-num">3</div><div>Fill out the quick form below with your name and email so we can reach you if you win.</div></li>
+      </ul>
+
+      <div class="amoe-note">
+        No purchase or social media post necessary to enter or win. If you'd rather not post, you can still enter for free by just filling out the form below — see full rules for details.
+      </div>
+
+      <h2 class="section-title">Your Info</h2>
+      <label class="field-label">Full Name</label>
+      <input type="text" id="g_name" placeholder="Jane Smith" autocomplete="name">
+
+      <label class="field-label">Email Address</label>
+      <input type="email" id="g_email" placeholder="jane@example.com" autocomplete="email">
+
+      <label class="field-label">Instagram Handle <span style="font-weight:400; color:var(--muted);">(optional, but helps us find your tag)</span></label>
+      <input type="text" id="g_instagram" placeholder="@yourhandle">
+      <div class="hint">Leave blank if you're entering via the free alternate method.</div>
+
+      <button class="rules-toggle" id="rulesToggle">View official rules</button>
+      <div class="rules-box" id="rulesBox">
+        <p><strong>Official Rules — The ChiropractOrr Instagram Giveaway</strong></p>
+        <p>NO PURCHASE OR SOCIAL MEDIA POST NECESSARY TO ENTER OR WIN. A purchase, post, or tag will not increase your chances of winning.</p>
+        <p><strong>Sponsor:</strong> The ChiropractOrr, Campbell, CA.</p>
+        <p><strong>Eligibility:</strong> Open to legal residents of the United States who are 18 years or older at time of entry. Employees of The ChiropractOrr and their immediate family members are not eligible.</p>
+        <p><strong>Entry Period:</strong> <span id="rulesEntryPeriod">12:00 AM – 11:59 PM PT on July 11, 2026</span>.</p>
+        <p><strong>How to Enter:</strong> (1) Post a photo tagging @thechiropractorr on Instagram, or (2) submit this entry form with your name and email — no post required. Limit one entry per person regardless of method.</p>
+        <p><strong>Winner Selection:</strong> One winner will be chosen at random from all eligible entries after the entry period closes. Odds of winning depend on the number of eligible entries received. Winner will be notified by email within 5 business days of the drawing.</p>
+        <p><strong>Prize:</strong> <span id="rulesPrize">Hyperice Hypersphere Go vibrating massage ball (approx. retail value $119)</span>. Prize is non-transferable and no cash substitution, except at Sponsor's discretion.</p>
+        <p>This promotion is in no way sponsored, endorsed, administered by, or associated with Instagram. Information you provide is submitted to The ChiropractOrr, not to Instagram. Void where prohibited by law.</p>
+        <p>By entering, you confirm you meet the eligibility requirements above and agree to these official rules.</p>
+      </div>
+
+      <label class="check-row" id="row_agree">
+        <input type="checkbox" id="g_agree">
+        <div class="txt">I confirm I'm 18+ and I agree to the official rules above.</div>
+      </label>
+
+      <div class="err-msg" id="errMsg">Please fill in your name, a valid email, and agree to the official rules.</div>
+
+      <button class="submit-btn" id="submitBtn">Enter Giveaway</button>
+      <div id="sendStatus"></div>
+    </div>
+
+    <div id="screenSuccess">
+      <div class="check-circle">&#10003;</div>
+      <h1>You're entered!</h1>
+      <p>Thanks for tagging <strong>@thechiropractorr</strong> — good luck! We'll email the winner directly.</p>
+    </div>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  var PRIZE_NAME = "Hypersphere Go";
+  var PRIZE_SUB = "One winner drawn July 11, 2026";
+  var RULES_ENTRY_PERIOD = "12:00 AM – 11:59 PM PT on July 11, 2026";
+  var RULES_PRIZE_DETAIL = "Hyperice Hypersphere Go vibrating massage ball (approx. retail value \$119)";
+  var ENTRY_ENDPOINT_URL = "https://script.google.com/macros/s/AKfycby7UAqcaFX5FyJ6c8z7I5Mqji17cecF3RvpbHU7BZQE7GJJmjyiV_qrUo7LztH9EC5G/exec";
+
+  document.getElementById('prizeName').textContent = PRIZE_NAME;
+  document.getElementById('prizeSub').textContent = PRIZE_SUB;
+  document.getElementById('rulesEntryPeriod').textContent = RULES_ENTRY_PERIOD;
+  document.getElementById('rulesPrize').textContent = RULES_PRIZE_DETAIL;
+
+  var rulesToggle = document.getElementById('rulesToggle');
+  var rulesBox = document.getElementById('rulesBox');
+  rulesToggle.addEventListener('click', function(){
+    var open = rulesBox.classList.toggle('open');
+    rulesToggle.textContent = open ? 'Hide official rules' : 'View official rules';
+  });
+
+  var agreeRow = document.getElementById('row_agree');
+  var agreeInput = document.getElementById('g_agree');
+  agreeRow.addEventListener('click', function(e){
+    if (e.target !== agreeInput) agreeInput.checked = !agreeInput.checked;
+    agreeRow.classList.toggle('checked', agreeInput.checked);
+  });
+  agreeInput.addEventListener('change', function(){
+    agreeRow.classList.toggle('checked', agreeInput.checked);
+  });
+
+  var submitBtn = document.getElementById('submitBtn');
+  var errMsg = document.getElementById('errMsg');
+  var sendStatus = document.getElementById('sendStatus');
+  var screenForm = document.getElementById('screenForm');
+  var screenSuccess = document.getElementById('screenSuccess');
+
+  submitBtn.addEventListener('click', function(){
+    var name = document.getElementById('g_name').value.trim();
+    var email = document.getElementById('g_email').value.trim();
+    var instagram = document.getElementById('g_instagram').value.trim();
+    var validEmail = /\S+@\S+\.\S+/.test(email);
+
+    if (name.length < 2 || !validEmail || !agreeInput.checked) {
+      errMsg.classList.add('show');
+      return;
+    }
+    errMsg.classList.remove('show');
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+    sendStatus.textContent = '';
+
+    var payload = {
+      name: name,
+      email: email,
+      instagram: instagram,
+      timestamp: new Date().toLocaleString()
+    };
+
+    if (!ENTRY_ENDPOINT_URL) {
+      console.warn('ENTRY_ENDPOINT_URL is not set — this entry was NOT saved anywhere.');
+      showSuccess();
+      return;
+    }
+
+    fetch(ENTRY_ENDPOINT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    }).then(function(){
+      showSuccess();
+    }).catch(function(err){
+      console.error('Entry submit failed:', err);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enter Giveaway';
+      sendStatus.textContent = 'Something went wrong sending your entry. Please try again.';
+    });
+
+    function showSuccess(){
+      screenForm.classList.add('hidden');
+      screenSuccess.classList.add('visible');
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
