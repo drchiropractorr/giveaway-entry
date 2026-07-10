@@ -85,7 +85,7 @@
 
   .step-list{
     list-style:none;
-    margin:0 0 26px;
+    margin:0 0 20px;
     padding:0;
     display:flex;
     flex-direction:column;
@@ -111,11 +111,10 @@
     color:var(--teal);
     font-weight:700;
   }
-  .amoe-note{
+  .req-note{
     font-size:12.5px;
     color:var(--muted);
-    background:#fbf7f0;
-    border-left:3px solid var(--accent);
+    background:var(--teal-light);
     padding:10px 12px;
     border-radius:6px;
     margin-bottom:26px;
@@ -179,7 +178,7 @@
     border:2px solid var(--line);
     border-radius:12px;
     cursor:pointer;
-    margin:6px 0 18px;
+    margin:6px 0 14px;
   }
   .check-row.checked{
     border-color:var(--teal);
@@ -203,6 +202,7 @@
     background:var(--teal);
     color:#fff;
     cursor:pointer;
+    margin-top:8px;
   }
   button.submit-btn:disabled{
     background:#a9c3c1;
@@ -225,6 +225,7 @@
     text-align:center;
   }
 
+  /* Success screen */
   #screenSuccess{
     display:none;
     flex-direction:column;
@@ -263,7 +264,7 @@
 <div class="wrap">
   <header>
     <div class="badge">GIVEAWAY</div>
-    <h1 id="headerTitle">Tag Us &amp; Win!</h1>
+    <h1 id="headerTitle">Share a Story &amp; Win!</h1>
     <p id="headerSub">The ChiropractOrr — Campbell, CA</p>
   </header>
 
@@ -278,12 +279,12 @@
       <h2 class="section-title">How to Enter</h2>
       <ul class="step-list">
         <li><div class="step-num">1</div><div>Take a photo at our booth/event today.</div></li>
-        <li><div class="step-num">2</div><div>Post it to your Instagram feed or Story and tag <span class="ig-handle">@thechiropractorr</span>.</div></li>
-        <li><div class="step-num">3</div><div>Fill out the quick form below with your name and email so we can reach you if you win.</div></li>
+        <li><div class="step-num">2</div><div>Post it to your Instagram <strong>Story</strong> and tag <span class="ig-handle">@thechiropractorr</span>.</div></li>
+        <li><div class="step-num">3</div><div>Fill out the quick form below with your name and email so we can confirm your entry and reach you if you win.</div></li>
       </ul>
 
-      <div class="amoe-note">
-        No purchase or social media post necessary to enter or win. If you'd rather not post, you can still enter for free by just filling out the form below — see full rules for details.
+      <div class="req-note">
+        Entries are confirmed once we see your tagged Story. Fill out the form below right after you post.
       </div>
 
       <h2 class="section-title">Your Info</h2>
@@ -293,18 +294,18 @@
       <label class="field-label">Email Address</label>
       <input type="email" id="g_email" placeholder="jane@example.com" autocomplete="email">
 
-      <label class="field-label">Instagram Handle <span style="font-weight:400; color:var(--muted);">(optional, but helps us find your tag)</span></label>
+      <label class="field-label">Instagram Handle</label>
       <input type="text" id="g_instagram" placeholder="@yourhandle">
-      <div class="hint">Leave blank if you're entering via the free alternate method.</div>
+      <div class="hint">So we can find your tagged Story and confirm your entry.</div>
 
       <button class="rules-toggle" id="rulesToggle">View official rules</button>
       <div class="rules-box" id="rulesBox">
         <p><strong>Official Rules — The ChiropractOrr Instagram Giveaway</strong></p>
-        <p>NO PURCHASE OR SOCIAL MEDIA POST NECESSARY TO ENTER OR WIN. A purchase, post, or tag will not increase your chances of winning.</p>
+        <p>NO PURCHASE NECESSARY TO ENTER OR WIN. A purchase will not increase your chances of winning.</p>
         <p><strong>Sponsor:</strong> The ChiropractOrr, Campbell, CA.</p>
         <p><strong>Eligibility:</strong> Open to legal residents of the United States who are 18 years or older at time of entry. Employees of The ChiropractOrr and their immediate family members are not eligible.</p>
         <p><strong>Entry Period:</strong> <span id="rulesEntryPeriod">12:00 AM – 11:59 PM PT on July 11, 2026</span>.</p>
-        <p><strong>How to Enter:</strong> (1) Post a photo tagging @thechiropractorr on Instagram, or (2) submit this entry form with your name and email — no post required. Limit one entry per person regardless of method.</p>
+        <p><strong>How to Enter:</strong> (1) Post a photo to your Instagram Story tagging @thechiropractorr and submit this form with your name and email, or (2) if you'd prefer not to post on social media, you may still enter for free by emailing your name and a note requesting entry to drchiropractorr@gmail.com during the entry period. Limit one entry per person regardless of method.</p>
         <p><strong>Winner Selection:</strong> One winner will be chosen at random from all eligible entries after the entry period closes. Odds of winning depend on the number of eligible entries received. Winner will be notified by email within 5 business days of the drawing.</p>
         <p><strong>Prize:</strong> <span id="rulesPrize">Hyperice Hypersphere Go vibrating massage ball (approx. retail value $119)</span>. Prize is non-transferable and no cash substitution, except at Sponsor's discretion.</p>
         <p>This promotion is in no way sponsored, endorsed, administered by, or associated with Instagram. Information you provide is submitted to The ChiropractOrr, not to Instagram. Void where prohibited by law.</p>
@@ -314,6 +315,11 @@
       <label class="check-row" id="row_agree">
         <input type="checkbox" id="g_agree">
         <div class="txt">I confirm I'm 18+ and I agree to the official rules above.</div>
+      </label>
+
+      <label class="check-row" id="row_optin">
+        <input type="checkbox" id="g_optin">
+        <div class="txt">Also add me to The ChiropractOrr's biweekly wellness email list (tips, offers, event invites). You can unsubscribe anytime.</div>
       </label>
 
       <div class="err-msg" id="errMsg">Please fill in your name, a valid email, and agree to the official rules.</div>
@@ -333,11 +339,16 @@
 
 <script>
 (function(){
+  // ======= CONFIG — edit these for your event =======
   var PRIZE_NAME = "Hypersphere Go";
   var PRIZE_SUB = "One winner drawn July 11, 2026";
   var RULES_ENTRY_PERIOD = "12:00 AM – 11:59 PM PT on July 11, 2026";
-  var RULES_PRIZE_DETAIL = "Hyperice Hypersphere Go vibrating massage ball (approx. retail value \$119)";
+  var RULES_PRIZE_DETAIL = "Hyperice Hypersphere Go vibrating massage ball (approx. retail value $119)";
+  // Paste your deployed Google Apps Script Web App URL here (see setup guide).
+  // Leave blank and entries will just show a success message without being saved anywhere —
+  // ALWAYS set this before running a real event.
   var ENTRY_ENDPOINT_URL = "https://script.google.com/macros/s/AKfycby7UAqcaFX5FyJ6c8z7I5Mqji17cecF3RvpbHU7BZQE7GJJmjyiV_qrUo7LztH9EC5G/exec";
+  // ====================================================
 
   document.getElementById('prizeName').textContent = PRIZE_NAME;
   document.getElementById('prizeSub').textContent = PRIZE_SUB;
@@ -359,6 +370,16 @@
   });
   agreeInput.addEventListener('change', function(){
     agreeRow.classList.toggle('checked', agreeInput.checked);
+  });
+
+  var optinRow = document.getElementById('row_optin');
+  var optinInput = document.getElementById('g_optin');
+  optinRow.addEventListener('click', function(e){
+    if (e.target !== optinInput) optinInput.checked = !optinInput.checked;
+    optinRow.classList.toggle('checked', optinInput.checked);
+  });
+  optinInput.addEventListener('change', function(){
+    optinRow.classList.toggle('checked', optinInput.checked);
   });
 
   var submitBtn = document.getElementById('submitBtn');
@@ -387,10 +408,13 @@
       name: name,
       email: email,
       instagram: instagram,
+      mailchimpOptin: optinInput.checked,
       timestamp: new Date().toLocaleString()
     };
 
     if (!ENTRY_ENDPOINT_URL) {
+      // No backend configured yet — still let the person see success so the
+      // event isn't blocked, but make it obvious to staff nothing was saved.
       console.warn('ENTRY_ENDPOINT_URL is not set — this entry was NOT saved anywhere.');
       showSuccess();
       return;
